@@ -1,23 +1,18 @@
 # Uncomment and rerun terraform init to migrate to the new s3 backend
 # terraform {
 #   backend "s3" {
-#     bucket = local.bucket_name
+#     bucket = "root-tf-state-orion"
 #     key    = "backend/terraform.tfstate"
 #     region = "eu-west-1"
 #   }
 # }
-
-locals {
-  # Rename the bucket to something unique
-  bucket_name = "root-tf-state"
-}
 
 provider "aws" {
   region = "eu-west-1"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket        = local.bucket_name
+  bucket        = "root-tf-state-orion"
   force_destroy = true
 }
 

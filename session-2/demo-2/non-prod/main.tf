@@ -1,7 +1,8 @@
 # Define our terraform backend
 terraform {
   backend "s3" {
-    bucket         = local.bucket_name
+    # rename to match whats defined in the backend
+    bucket         = "root-tf-state-orion"
     key            = "non-prod/demo-2/terraform.tfstate"
     region         = "eu-west-1"
     dynamodb_table = "tf-locks"
@@ -12,10 +13,6 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-locals {
-  # Rename to the bucket defined in the backend
-  bucket_name = "root-tf-state"
-}
 
 resource "aws_launch_configuration" "demo" {
   image_id        = "ami-006c19cfa0e8f4672"

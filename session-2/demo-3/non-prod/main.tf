@@ -1,7 +1,8 @@
 # Define our terraform backend
 terraform {
   backend "s3" {
-    bucket         = local.bucket_name
+    # rename to match whats defined in the backend
+    bucket         = "root-tf-state-orion"
     key            = "non-prod/demo-3/terraform.tfstate"
     region         = "eu-west-1"
     dynamodb_table = "tf-locks"
@@ -13,8 +14,6 @@ provider "aws" {
 }
 
 locals {
-  # Rename to the bucket defined in the backend
-  bucket_name = "root-tf-state"
   subnets = {
     a = "subnet-0deeb8c242fca55af"
     b = "subnet-05f8ec802c5604bdc"
