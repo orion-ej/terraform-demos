@@ -1,17 +1,5 @@
-# Module Definition
+# Modules
 
-### example-module.hcl
+This directory contains hcl files that define modules for use in the repo, using `base_source_url` to specifiy the module folder through git.
 
-```hcl
-locals {
-  env_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
-  env = local.env_vars.locals.env
-  # Define where to pull the module from
-  # e.g base_source_url = "git::git@github.com:<username>/<repo>.git//<module>"
-  base_source_url = ""
-}
-
-# Set inputs for the module
-inputs = {
-}
-```
+See `instance.hcl` for an example
